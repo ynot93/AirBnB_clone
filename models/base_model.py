@@ -13,14 +13,12 @@ class BaseModel():
     This class defies objects with id and datetime atributes.
 
     """
-    def __init__(self, name=None, my_number=None, id=None, created_at=None, updated_at=None):
+    def __init__(self, *args, **kwargs):
         """
         Initializes objects with the following instance attributes.
 
         """
-        self.name = name
-        self.my_number = my_number
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
@@ -30,23 +28,26 @@ class BaseModel():
 
         """
         class_name =  self.__class__.__name__
-        print("")
+        print("[{}] ({}) {}".format(class_name, self.id, self.__dict__))
 
     def save(self):
         """
         Updates the attribute updated_at with the current datetime.
 
         """
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """
         Returns dictionary with all key/values of attributes desired.
 
         """
-        return {
-            'my_number': self.my_number,
-            'name': self.my_name,
-            '__class__': self.__class__.__name__,
-        }
+
+        class_name = self.__class__.__name__
+        object_dict =__ self.__dict__.copy()
+        object_dict['__class__'] = class_name
+        object_dict['created_at'] = self.created_at.isoformat()
+        object_dict['updated_at'] = self.updated_at.isoformat()
+        return object_dict
 
 
