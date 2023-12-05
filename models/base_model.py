@@ -11,7 +11,7 @@ import uuid
 class BaseModel():
     """
     This class defies objects with id and datetime atributes.
-    
+
     """
     def __init__(self, name=None, my_number=None, id=None, created_at=None, updated_at=None):
         """
