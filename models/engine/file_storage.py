@@ -5,6 +5,7 @@ data to and from a file.
 
 """
 import json
+from os.path import isfile
 
 
 class FileStorage():
@@ -27,7 +28,7 @@ class FileStorage():
         Populates __objects with obj using key classname.id
 
         """
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
@@ -44,11 +45,15 @@ class FileStorage():
         Deserializes the JSON file to __objects.
 
         """
-        if __file_path:
+        from models.base_model import BaseModel
+
+        if isfile(self.__file_path):
             with open(self.__file_path, 'r') as file:
                 objects = json.load(file)
                 for key, obj_dict in objects.items():
-                    class_name, obj.id = key.split('.')
-                    obj_class = getattr(models, class_name)
+                    class_name, obj_id = key.split('.')
+                    #obj_class = getattr(models, class_name)
+                    #obj_class = globals()[class_name]
+                    obj_class = BaseModel
                     obj_instance = obj_class(**obj_dict)
                     self.__objects[key] = obj_instance
