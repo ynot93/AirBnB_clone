@@ -23,6 +23,17 @@ class FileStorage():
         """
         return self.__objects
 
+    def classes(self):
+        """
+        Returns list of available classes.
+
+        """
+        classes = set()
+        for key in self.__objects.keys():
+            class_name, _ = key.split('.')
+            classes.add(class_name)
+        return list(classes)
+
     def new(self, obj):
         """
         Populates __objects with obj using key classname.id
@@ -52,8 +63,6 @@ class FileStorage():
                 objects = json.load(file)
                 for key, obj_dict in objects.items():
                     class_name, obj_id = key.split('.')
-                    #obj_class = getattr(models, class_name)
-                    #obj_class = globals()[class_name]
-                    obj_class = BaseModel
+                    obj_class = eval(class_name)
                     obj_instance = obj_class(**obj_dict)
                     self.__objects[key] = obj_instance
