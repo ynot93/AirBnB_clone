@@ -224,6 +224,48 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attribute_name, attribute_value)
         storage.save()
 
+    def default(self, arg):
+        """
+        Handle commands in the form <class name>.<method>()
+
+        """
+        args = shlex.split(arg)
+        if len(args) >= 2:
+            class_name = args[0]
+            if class_name not in storage.classes():
+                print("** class doesn't exist **")
+                return
+
+            command = args[1]
+
+            if command = 'all()':
+                self.do_all(class_name)
+            elif command == 'count ()':
+                instances = storage.all().values()
+                for item in instances:
+                    if isinstance(item, eval(class_name)):
+                        count += 1
+                print(count)
+            elif command.startswith('show(') and command.endswith(')'):
+                instance_id = command.split('(')[1].split(')')[0]
+                self.do_show(f"{class_name} {instance_id}")
+            elif command.startswith('destroy(') and command.endswith(')'):
+                instance_id = command.split('(')[1].split(')')[0]
+                self.do_destroy(f"{class_name} {instance_id}")
+            elif command.startswith('update(') and command.endswith(')'):
+                update_args = command.split('(')[1].split(')')[0].split('.')
+                if len(update_args) == 3:
+                    self.do_update(f"{class_name} {update_args[0]} {update_args[1]} {update_args[2]}")
+                elif len(update_args) == 2 and update_args[1][0] == '{' and update_args[1][-1] == '}':
+                    self.do_update(f"{class_name} {update_args[0]} {update_args[1]}")
+                else:
+                    print("** invalid command **")
+            else:
+                print("** invalid command **")
+        else:
+            print("** invalid command **")
+                    
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
