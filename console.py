@@ -7,6 +7,12 @@ be used to interact with our end points.
 import cmd
 import shlex
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
@@ -229,7 +235,7 @@ class HBNBCommand(cmd.Cmd):
         Handle commands in the form <class name>.<method>()
 
         """
-        args = shlex.split(arg)
+        args = arg.split('.')
         if len(args) >= 2:
             class_name = args[0]
             if class_name not in storage.classes():
@@ -238,9 +244,10 @@ class HBNBCommand(cmd.Cmd):
 
             command = args[1]
 
-            if command = 'all()':
+            if command == 'all()':
                 self.do_all(class_name)
-            elif command == 'count ()':
+            elif command == 'count()':
+                count = 0
                 instances = storage.all().values()
                 for item in instances:
                     if isinstance(item, eval(class_name)):
@@ -253,7 +260,7 @@ class HBNBCommand(cmd.Cmd):
                 instance_id = command.split('(')[1].split(')')[0]
                 self.do_destroy(f"{class_name} {instance_id}")
             elif command.startswith('update(') and command.endswith(')'):
-                update_args = command.split('(')[1].split(')')[0].split('.')
+                update_args = command.split('(')[1].split(')')[0].split(',')
                 if len(update_args) == 3:
                     self.do_update(f"{class_name} {update_args[0]} {update_args[1]} {update_args[2]}")
                 elif len(update_args) == 2 and update_args[1][0] == '{' and update_args[1][-1] == '}':

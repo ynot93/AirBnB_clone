@@ -1,18 +1,23 @@
 #!usr/bin/python3
+"""
+This module deals with attributes and methods of the
+class Amenity.
 
-from models import storage
-from models.base_models import BaseModel
+"""
+from models.base_model import BaseModel
 
-Class Amenity(BaseModel):
 
+class Amenity(BaseModel):
     """
     Class that contains the Amenity information
+    
     """
 
     name = ""
 
-    def.__init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
-        Initializes a class object
+        Initializes an Amenity object.
+        
         """
         super().__init__(*args, **kwargs)

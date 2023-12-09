@@ -1,19 +1,22 @@
 #!usr/bin/python3
+"""
+This modules deals with State attributes and methods.
 
-from models import storage
+"""
 from models.base_model import BaseModel
 
-Class State(BaseModel):
+
+class State(BaseModel):
     """
     Class that handles the state information
+    
     """
 
     name = ""
 
     def __init__(self, *args, **kwargs):
+        """
+        Initializes a state object.
 
-    """
-    Initializes a class object
-    """
-
-    super().__init__(*args, **kwargs)
+        """
+        super().__init__(*args, **kwargs)

@@ -1,12 +1,15 @@
 #!usr/bin/python3
+"""
+This module deals with anything User related.
 
-from models import storage
+"""
 from models.base_model import BaseModel
 
-Class User(BaseModel):
 
+class User(BaseModel):
     """
     Class that handles the users information
+    
     """
 
     email = ""
@@ -16,6 +19,7 @@ Class User(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """
-        Initializes  a class object
+        Initializes a User class object
+        
         """
         super().__init__(*args, **kwargs)

@@ -1,12 +1,16 @@
 #!usr/bin/python3
+"""
+This module deals with attributes and methods of the
+class Place.
 
-from models import storage
+"""
 from models.base_model import BaseModel
 
-Class Place(BaseModel):
 
+class Place(BaseModel):
     """
     Class that contains the Place information
+    
     """
 
     city_id = ""
@@ -23,7 +27,8 @@ Class Place(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """
-        Initializes a class object
+        Initializes a Place object.
+        
         """
 
         super().__init__(*args, **kwargs)
