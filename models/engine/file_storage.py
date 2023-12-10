@@ -28,7 +28,15 @@ class FileStorage():
         Returns list of available classes.
 
         """
-        classes = set()
+        classes = {
+                'BaseModel',
+                'User',
+                'State',
+                'City',
+                'Amenity',
+                'Place',
+                'Review'
+        }
         for key in self.__objects.keys():
             class_name, _ = key.split('.')
             classes.add(class_name)
