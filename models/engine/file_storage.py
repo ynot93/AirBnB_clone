@@ -55,7 +55,9 @@ class FileStorage():
         Converts the dict __objects to a JSON file.
 
         """
-        dict_objects = {key: obj.to_dict() for key, obj in self.__objects.items()}
+        dict_objects = {
+                key: obj.to_dict() for key, obj in self.__objects.items()
+        }
         with open(self.__file_path, 'w') as file:
             json.dump(dict_objects, file)
 

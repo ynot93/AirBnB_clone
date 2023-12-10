@@ -29,8 +29,18 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(my_model.updated_at)
         self.assertEqual(my_model.name, "My First Model")
         self.assertEqual(my_model.my_number, 89)
-        self.assertTrue(time_before_creation <= my_model.created_at <= time_after_creation)
-        self.assertTrue(time_before_creation <= my_model.updated_at <= time_after_creation)
+        self.assertTrue(
+                time_before_creation <= my_model.created_at
+        )
+        self.assertTrue(
+                my_model.created_at <= time_after_creation
+        )
+        self.assertTrue(
+                time_before_creation <= my_model.updated_at
+        )
+        self.assertTrue(
+                my_model.updated_at <= time_after_creation
+        )
 
     def test_save_updates_update_at(self):
         """
@@ -42,7 +52,7 @@ class TestBaseModel(unittest.TestCase):
         my_model.save()
         self.assertNotEqual(initial_updated_at_time, my_model.updated_at)
 
-    def test_to_dict_methhod(self):
+    def test_to_dict_method(self):
         """
         Tests the dictionary format of data returned by to_dict
 
@@ -51,7 +61,7 @@ class TestBaseModel(unittest.TestCase):
         my_model.name = "My First Model"
         my_model.my_number = 89
         obj_dict = my_model.to_dict()
-        
+
         self.assertIn('id', obj_dict)
         self.assertIn('created_at', obj_dict)
         self.assertIn('updated_at', obj_dict)
@@ -95,7 +105,8 @@ class TestBaseModel(unittest.TestCase):
         Tests the __str__ method of BaseModel.
         """
         my_model = BaseModel()
-        expected_str = "[BaseModel] ({}) {}".format(my_model.id, my_model.__dict__)
+        expected_str = "[BaseModel] ({}) {}".format(
+                my_model.id, my_model.__dict__)
         self.assertEqual(str(my_model), expected_str)
 
 

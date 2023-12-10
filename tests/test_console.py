@@ -23,7 +23,7 @@ class TestHBNBCommand(TestCase):
                 r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-'
                 r'[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
         )
-        
+
         actual_output = mock_stdout.getvalue().strip()
         self.assertTrue(
             bool(uuid_pattern.match(actual_output))
@@ -210,7 +210,9 @@ class TestHBNBCommand(TestCase):
         self.assertEqual(expected_output, actual_output)
 
     def test_update_missing_value(self):
-        command = "update BaseModel c574cfde-95cd-4c3b-b501-1f702243b8ae first_name"
+        command = ("update BaseModel "
+                   "c574cfde-95cd-4c3b-b501-1f702243b8ae "
+                   "first_name")
         with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
             HBNBCommand().onecmd(command)
 
@@ -224,4 +226,3 @@ if __name__ == "__main__":
     import unittest
 
     unittest.main()
-

@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 class Amenity(BaseModel):
     """
     Class that contains the Amenity information
-    
+
     """
 
     name = ""
@@ -18,6 +18,6 @@ class Amenity(BaseModel):
     def __init__(self, *args, **kwargs):
         """
         Initializes an Amenity object.
-        
+
         """
         super().__init__(*args, **kwargs)

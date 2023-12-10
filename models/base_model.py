@@ -24,7 +24,11 @@ class BaseModel():
                 if key == '__class__':
                     continue
                 elif key in ['created_at', 'updated_at']:
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(
+                            self,
+                            key,
+                            datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    )
                 else:
                     setattr(self, key, value)
             if 'created_at' not in kwargs or 'updated_at' not in kwargs:
@@ -42,7 +46,7 @@ class BaseModel():
         Prints the class name, id and instance attributes as a dictionary.
 
         """
-        class_name =  self.__class__.__name__
+        class_name = self.__class__.__name__
         return("[{}] ({}) {}".format(class_name, self.id, self.__dict__))
 
     def save(self):
@@ -65,5 +69,3 @@ class BaseModel():
         object_dict['created_at'] = self.created_at.isoformat()
         object_dict['updated_at'] = self.updated_at.isoformat()
         return object_dict
-
-

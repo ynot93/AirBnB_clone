@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 class User(BaseModel):
     """
     Class that handles the users information
-    
+
     """
 
     email = ""
@@ -19,7 +19,7 @@ class User(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """
-        Initializes a User class object
-        
+        Initializes a User class object.
+
         """
         super().__init__(*args, **kwargs)

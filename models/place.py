@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 class Place(BaseModel):
     """
     Class that contains the Place information
-    
+
     """
 
     city_id = ""
@@ -28,7 +28,7 @@ class Place(BaseModel):
     def __init__(self, *args, **kwargs):
         """
         Initializes a Place object.
-        
+
         """
 
         super().__init__(*args, **kwargs)
