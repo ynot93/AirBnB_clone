@@ -4,7 +4,7 @@ This module deals with unittests for the command line
 interface that runs our HBNB application.
 
 """
-from unittest import TestCase
+import unittest
 from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
@@ -12,7 +12,7 @@ import os
 import re
 
 
-class TestHBNBCommand(TestCase):
+class TestHBNBCommand(unittest.TestCase):
 
     def test_create(self):
         command = "create BaseModel"
@@ -75,6 +75,16 @@ class TestHBNBCommand(TestCase):
             HBNBCommand().onecmd(command)
 
         expected_output = "** instance id missing **"
+        actual_output = mock_stdout.getvalue().strip()
+
+        self.assertEqual(expected_output, actual_output)
+
+    def test_quit(self):
+        command = "quit"
+        with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
+            HBNBCommand().onecmd(command)
+
+        expected_output = ""
         actual_output = mock_stdout.getvalue().strip()
 
         self.assertEqual(expected_output, actual_output)
@@ -223,6 +233,4 @@ class TestHBNBCommand(TestCase):
 
 
 if __name__ == "__main__":
-    import unittest
-
     unittest.main()

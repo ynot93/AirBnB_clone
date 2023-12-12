@@ -21,7 +21,6 @@ class HBNBCommand(cmd.Cmd):
     Implements commands used to operate methods of the classes.
 
     """
-    intro = "Welcome to HBNB"
     prompt = "(hbnb) "
 
     command_help = {
@@ -34,14 +33,12 @@ class HBNBCommand(cmd.Cmd):
         """Quit command exits the program
 
         """
-        print("Goodbye...")
         return True
 
     def do_EOF(self, arg):
         """EOF command exits the program.
 
         """
-        print("Goodbye...")
         return True
 
     def do_help(self, arg):
