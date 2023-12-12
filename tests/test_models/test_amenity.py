@@ -14,12 +14,12 @@ class TestAmenity(unittest.TestCase):
 
         """
         amenity = Amenity()
-        amenity.name = "WiFi"
+        Amenity.name = "WiFi"
 
         self.assertIsNotNone(amenity.id)
         self.assertIsNotNone(amenity.created_at)
         self.assertIsNotNone(amenity.updated_at)
-        self.assertEqual(amenity.name, "WiFi")
+        self.assertEqual(Amenity.name, "WiFi")
 
 
 if __name__ == '__main__':

@@ -14,14 +14,14 @@ class TestCity(unittest.TestCase):
 
         """
         city = City()
-        city.state_id = "12345"
-        city.name = "San Francisco"
+        City.state_id = "12345"
+        City.name = "San Francisco"
 
         self.assertIsNotNone(city.id)
         self.assertIsNotNone(city.created_at)
         self.assertIsNotNone(city.updated_at)
-        self.assertEqual(city.state_id, "12345")
-        self.assertEqual(city.name, "San Francisco")
+        self.assertEqual(City.state_id, "12345")
+        self.assertEqual(City.name, "San Francisco")
 
 
 if __name__ == '__main__':
