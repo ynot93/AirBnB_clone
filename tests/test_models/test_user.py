@@ -14,18 +14,18 @@ class TestUser(unittest.TestCase):
 
         """
         user = User()
-        User.email = "test@example.com"
-        User.password = "password"
-        User.first_name = "John"
-        User.last_name = "Doe"
+        User.email = ""
+        User.password = ""
+        User.first_name = ""
+        User.last_name = ""
 
         self.assertIsNotNone(user.id)
         self.assertIsNotNone(user.created_at)
         self.assertIsNotNone(user.updated_at)
-        self.assertEqual(User.email, "test@example.com")
-        self.assertEqual(User.password, "password")
-        self.assertEqual(User.first_name, "John")
-        self.assertEqual(User.last_name, "Doe")
+        self.assertEqual(User.email, "")
+        self.assertEqual(User.password, "")
+        self.assertEqual(User.first_name, "")
+        self.assertEqual(User.last_name, "")
 
 
 if __name__ == '__main__':
