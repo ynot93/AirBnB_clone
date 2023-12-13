@@ -234,18 +234,21 @@ class HBNBCommand(cmd.Cmd):
                 instance_id = command.split('(')[1].split(')')[0]
                 self.do_destroy(f"{class_name} {instance_id}")
             elif command.startswith('update(') and command.endswith(')'):
-                update_args = command.split('(')[1].split(')')[0].split(',')
+                update_args = command.split('(')[1].split(')')[0].split(', ')
                 if len(update_args) == 3:
                     self.do_update(
                             f"{class_name} {update_args[0]} "
                             f"{update_args[1]} {update_args[2]}"
                     )
                 elif len(update_args) == 2:
-                    if update_args[1][0] == '{' and update_args[1][-1] == '}':
-                        self.do_update(
-                                f"{class_name} {update_args[0]} "
-                                f"{update_args[1]}"
-                        )
+                    for item in update_args:
+                        if item.startswith('{') or item.endswith('}'):
+                            dict_args = item.strip('{}')
+                            arg_list = dict_args.split(': ')
+                            self.do_update(
+                                    f"{class_name} {update_args[0]} "
+                                    f"{arg_list[0]} {arg_list[1]}"
+                            )
                     else:
                         print("** invalid command **")
                 else:

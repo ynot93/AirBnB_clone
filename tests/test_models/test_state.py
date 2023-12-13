@@ -14,12 +14,12 @@ class TestState(unittest.TestCase):
 
         """
         state = State()
-        State.name = "California"
+        State.name = ""
 
         self.assertIsNotNone(state.id)
         self.assertIsNotNone(state.created_at)
         self.assertIsNotNone(state.updated_at)
-        self.assertEqual(State.name, "California")
+        self.assertEqual(State.name, "")
 
 
 if __name__ == '__main__':

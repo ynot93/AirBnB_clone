@@ -14,16 +14,16 @@ class TestReview(unittest.TestCase):
 
         """
         review = Review()
-        Review.place_id = "98765"
-        Review.user_id = "user456"
-        Review.text = "A wonderful stay at the Cozy Cottage"
+        Review.place_id = ""
+        Review.user_id = ""
+        Review.text = ""
 
         self.assertIsNotNone(review.id)
         self.assertIsNotNone(review.created_at)
         self.assertIsNotNone(review.updated_at)
-        self.assertEqual(Review.place_id, "98765")
-        self.assertEqual(Review.user_id, "user456")
-        self.assertEqual(Review.text, "A wonderful stay at the Cozy Cottage")
+        self.assertEqual(Review.place_id, "")
+        self.assertEqual(Review.user_id, "")
+        self.assertEqual(Review.text, "")
 
 
 if __name__ == '__main__':
